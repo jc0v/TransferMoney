@@ -1,0 +1,16 @@
+-- Disable fk checks so they can be created on the fly
+SET FOREIGN_KEY_CHECKS = 0;
+
+     CREATE TABLE IF NOT EXISTS ACCOUNT (Id NUMERIC(19,0) PRIMARY KEY AUTO_INCREMENT,
+		AccountName varchar(255),
+		Balance DECIMAL(20,2));
+		
+	 CREATE TABLE IF NOT EXISTS TRANSACTION (Id NUMERIC(19,0) PRIMARY KEY AUTO_INCREMENT,
+		toAccountId NUMERIC(19,0),
+		fromAccountId NUMERIC(19,0),
+		Amount DECIMAL(20,2),
+		TransactionDate TIMESTAMP,
+		CONSTRAINT FK_toAccountId FOREIGN KEY (toAccountId)	REFERENCES ACCOUNT(Id),
+		CONSTRAINT FK_fromAccountId FOREIGN KEY (fromAccountId)	REFERENCES ACCOUNT(Id));
+		
+ SET FOREIGN_KEY_CHECKS = 1;

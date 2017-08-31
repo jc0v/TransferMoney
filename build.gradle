@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'war' 
+apply plugin: 'eclipse-wtp'
+apply plugin: 'com.bmuschko.tomcat'
+project.webAppDirName = 'WebContent'
+
+repositories {
+    jcenter()
+}
+ 
+dependencies {
+    providedCompile "javax.servlet:javax.servlet-api:3.1.0"      
+    
+    def tomcatVersion = '7.0.81'    
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+           
+    // h2 in memory db
+	compile group: 'com.h2database', name: 'h2', version: '1.4.196'
+	
+	// gson
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
+	
+	// apache commons lang
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'	
+	
+	testCompile "junit:junit:4.11"
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.9.0'
+	
+}
+
+buildscript {
+ 
+    repositories {
+        jcenter()
+    }
+ 
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.3'
+    }
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
