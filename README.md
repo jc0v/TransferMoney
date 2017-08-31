@@ -11,7 +11,8 @@ To run the unit tests execute the following from the command line
 ## Suggested operating steps
 1. Create some accounts
 2. Transfer money between accounts
-3. View transaction history
+3. View transaction history  
+
 For more see API Documentation below
 
 ## API Documentation
