@@ -1,5 +1,7 @@
 # TransferMoney
 
+This application consists of two web services that run on an embedded Tomcat instance and use an in memory h2 database as a datastore.
+
 To run the application execute the following from the command line
 
 **gradlew tomcatRun**
